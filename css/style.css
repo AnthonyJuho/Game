@@ -3,9 +3,7 @@
     padding: 0;
 }
 .title {
-    /* background-image: url("image/Minecraft.jpg"); */
-    /* background-size: cover; */
-    background-color: lightblue;
+    background-color: #AAC4FF;
 }
 .title > h1 {
     padding: 20px;
@@ -14,4 +12,18 @@
     font-size: 50px;
     color: white;
     text-shadow: #00F 1px 0 10px;
+}
+#content {
+    height: 90vh;
+    background-color: #D2DAFF;
+}
+#content > .startbutton {
+    width: 200px;
+    font-size: 50px;
+    display: block;
+    margin:25vh auto;
+}
+#content > #description {
+    font-size: 30px;
+    text-align: center;
 }
