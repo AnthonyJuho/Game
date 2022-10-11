@@ -15,9 +15,29 @@
 }
 #content {
     background-color: #D2DAFF;
-    height: 90vh;
+    height: 85vh;
 }
 #content > #description {
     font-size: 30px;
     text-align: center;
+}
+#content > #description > #startli {
+    margin-top: 100px;
+}
+#content > #description > #startli > #start{
+    width: 100px;
+    height: 50px;
+    font-size: 30px;
+    background-color: #FF884B;
+    text-shadow: #FFD384 1px 0 10px;
+    color: #FFF9B0;
+    cursor: pointer;
+    border: 1px solid #FF577F;
+}
+#content > #description > #count {
+    font-size: 100px;
+    color: white;
+    text-shadow: #00F 1px 0 10px;
+    padding-top: 30vh;
+    position: relative;
 }
