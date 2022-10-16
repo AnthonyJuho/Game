@@ -47,10 +47,17 @@
     color: #256D85;
     padding: 20px;
 }
-#content > #description > #canvas {
-    background-color: white;
-    outline: 5px solid #AAC4FF;
-    width: 70vw;
+#content > #description > #board { 
+    background: white;
+    border: 1px solid black;
+    margin: auto;
+}
+#content > #description >#board > #block {
+    background-color: #749F82;
+    /* border: 5px solid #749F82; */
+    border: none;
+    cursor: pointer;
+    display: block;
 }
 #content > #description > li > #score{
     padding-top: 25vh;

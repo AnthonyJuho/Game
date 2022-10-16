@@ -27,51 +27,67 @@ function Start() {
 
 }
 
-function drawBox(ctx, Width, Height, Block_Size,scale,left,top){
-    let Block_X = Math.random()*(Width-Block_Size);
-    let Block_Y = Math.random()*(Height-Block_Size);
-    Block_Screen_X = (Block_X*scale)+left;
-    Block_Screen_Y = (Block_Y*scale)+top;
-    ctx.clearRect(0,0,Width,Height);
-    ctx.fillStyle = "green";
-    ctx.fillRect(Block_X,Block_Y,Block_Size,Block_Size);
+function ChangeSize(){
+
+    if(isgaming){
+
+
+        var Block = document.getElementById('block');
+        var Board = document.getElementById('board');
+    
+        var Width = window.innerWidth*0.8;
+        var Height = window.innerHeight*0.6;
+    
+        Board.style.width = Width+"px";
+        Board.style.height = Height+"px";
+    
+        var Block_Size = Math.sqrt((Width*Height)/100);
+    
+        Block.style.width = Block_Size+"px";
+        Block.style.height = Block_Size+"px";
+    }
+    
+}
+
+function BlockReLocate(){
+    if(isgaming){
+        var Block = document.getElementById('block');
+        var Board = document.getElementById('board');
+
+        var Board_Width = Board.clientWidth;
+        var Board_Height = Board.clientHeight;
+        var Block_Size = Block.clientWidth;
+
+        var x = Math.random()*(Board_Width-Block_Size);
+        var y = Math.random()*(Board_Height-Block_Size);
+        // console.log(Block_Size);
+        Block.style.marginLeft = x+"px";
+        Block.style.marginTop = y+"px";
+    }
 }
 
 function Game(){
     isgaming = true;
     score = 0;
-    document.getElementById('description').innerHTML = '    <div id="timer">Score: 0<br>10</div><canvas id="canvas"></canvas>';
 
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
+    document.getElementById('description').innerHTML = '    <div id="timer">Score: 0<br>10</div><div id="board"><input id="block" type="button"><div>';
 
-    var Block_Size = 20;
+    ChangeSize();
 
-    var Width = canvas.width;
-    var Height = canvas.height;
-    var OWidth = canvas.offsetWidth;
+    var Block = document.getElementById('block');
+    var Board = document.getElementById('board');
 
-    let cx = canvas.offsetLeft;
-    let cy = canvas.offsetTop;
+    BlockReLocate();
 
-    var scale = OWidth/Width;
+    addEventListener("resize", ()=>{
+        ChangeSize();
+    })
+
+    Block.addEventListener("click", e => {
+        score++;
+        BlockReLocate();
+    });
     
-    drawBox(ctx,Width,Height,Block_Size,scale,cx,cy);
-
-
-        document.addEventListener("click", e => {
-            if(isgaming) {
-                let x = e.pageX;
-                let y = e.pageY;
-                if(Block_Screen_X <= x && x <= Block_Screen_X+(Block_Size*scale) &&
-                    Block_Screen_Y <= y && y <= Block_Screen_Y+(Block_Size*scale)){
-                        score++;
-                        drawBox(ctx,Width,Height,Block_Size,scale,cx,cy);
-                }
-            }
-        });
-    
-
     let time = 100;
     let real = "";
     let timer = setInterval(() => {
